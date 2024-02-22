@@ -111,6 +111,8 @@ public class BackupPicker extends BottomSheetDialogFragment {
 					if (e instanceof EOFException) {
 						handler.post(() -> Toast.makeText(requireContext(), "Invalid backup file", Toast.LENGTH_SHORT).show());
 					}
+					handler.post(this::dismiss);
+					return;
 				}
 				Collections.sort(pickerElements, (gf1, gf2) ->
 						gf1.getGameFile().getRealName()
@@ -156,7 +158,7 @@ public class BackupPicker extends BottomSheetDialogFragment {
 				view.findViewById(R.id.buttons).setVisibility(View.VISIBLE);
 
 				picker.setAdapter(new BackupPickerAdapter(requireContext(), pickerElements));
-				view.findViewById(R.id.discard).setOnClickListener(v -> super.dismiss());
+				view.findViewById(R.id.discard).setOnClickListener(v -> this.dismiss());
 				view.findViewById(R.id.restore).setOnClickListener(v -> {
 					view.findViewById(R.id.loading).setVisibility(View.VISIBLE);
 					view.findViewById(R.id.buttons).setVisibility(View.GONE);
