@@ -13,7 +13,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -87,8 +86,8 @@ public class MenuActivity extends AppCompatActivity {
 		try {
 			PussyShell.init(() -> handler.post(() ->
 					Toast.makeText(menuContext.get(),
-					"There was an error while executing command, logfile located in /sdcard/SKDE/Log/",
-					Toast.LENGTH_LONG).show()
+							"There was an error while executing command, logfile located in /sdcard/SKDE/Log/",
+							Toast.LENGTH_LONG).show()
 			));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -119,7 +118,7 @@ public class MenuActivity extends AppCompatActivity {
 								"stat -c \"%a %u %g\" " + PussyUser.getDataFolder())
 						.to(stdout, stderr)
 						.exec();
-				if (stderr.size() == 0) {
+				if (stderr.isEmpty()) {
 					preferedToyboxCmd = cmd;
 					prefs.edit()
 							.putString("toybox", cmd)
@@ -129,7 +128,7 @@ public class MenuActivity extends AppCompatActivity {
 				}
 				stderr.clear();
 			}
-			if (stdout.size() == 0) {
+			if (stdout.isEmpty()) {
 				Toast.makeText(this, "Can't detect busybox or toybox, in order to continue you must install it", Toast.LENGTH_LONG).show();
 			}
 		}
