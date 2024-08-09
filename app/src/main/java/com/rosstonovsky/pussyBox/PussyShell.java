@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.chichar.skdeditor.CrashHandler;
+import com.rosstonovsky.catbox.CatUser;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -37,7 +38,7 @@ public class PussyShell {
 
 	private String commands;
 
-	private static String toyboxPath = "." + PussyUser.getAppFilesFolder() + "/bin/toybox ";
+	private static String toyboxPath = "." + CatUser.getAppFilesFolder() + "/bin/toybox ";
 
 	public static String getToyboxPath() {
 		return toyboxPath;
