@@ -86,7 +86,7 @@ public class ExplorerFragment extends Fragment {
 		}
 
 		if (currFolder.isFile()) {
-			if (currFolder.length() < 2000000) {
+			if (currFolder.length() < 8_000_000) {
 				Intent intent = new Intent(explorerContext, EditorActivity.class);
 				intent.putExtra("path", currFolder.getAbsolutePath());
 				explorerContext.startActivity(intent);
