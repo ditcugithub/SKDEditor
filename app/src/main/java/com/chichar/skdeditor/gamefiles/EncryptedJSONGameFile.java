@@ -17,17 +17,6 @@ public class EncryptedJSONGameFile extends JSONGameFile {
 
 	private final byte[] key;
 
-	private static final byte[] iv = new byte[]{
-			0x41,
-			0x68,
-			0x62,
-			0x6f,
-			0x6f,
-			0x6c,
-			0x0,
-			0x0
-	};
-
 	public EncryptedJSONGameFile(String name, String realName, String path, byte[] key) {
 		super(name, realName, path);
 		this.key = key;
@@ -45,7 +34,7 @@ public class EncryptedJSONGameFile extends JSONGameFile {
 		}
 		try {
 			assert cipher != null;
-			cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, new IvParameterSpec(iv));
+			cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, new IvParameterSpec(KeyProvider.getIv()));
 		} catch (InvalidAlgorithmParameterException | InvalidKeyException e) {
 			e.printStackTrace();
 		}
@@ -71,7 +60,7 @@ public class EncryptedJSONGameFile extends JSONGameFile {
 			return new byte[0];
 		}
 		try {
-			cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, new IvParameterSpec(iv));
+			cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, new IvParameterSpec(KeyProvider.getIv()));
 		} catch (InvalidAlgorithmParameterException | InvalidKeyException e) {
 			e.printStackTrace();
 		}

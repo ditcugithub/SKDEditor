@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -195,6 +196,7 @@ public class MenuActivity extends AppCompatActivity {
 					Toast.makeText(this, "Invalid filetype", Toast.LENGTH_SHORT).show();
 				}
 			}
+
 			View iconView = splashScreenView.getIconView();
 			int duration = 300;
 			if (splashShown) {

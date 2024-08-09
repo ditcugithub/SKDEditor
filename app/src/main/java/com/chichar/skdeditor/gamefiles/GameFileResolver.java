@@ -59,12 +59,12 @@ public class GameFileResolver {
 			}
 
 			if (file.getName().startsWith("statistic")) {
-				addEJSONFile(file, new byte[]{0x63, 0x72, 0x73, 0x74, 0x31, 0x0, 0x0, 0x0});
+				addEJSONFile(file, KeyProvider.getStatisticKey());
 			} else if (file.getName().equals("game.data")) {
 				gameFiles.add(new XORGameFile("game.data", file.getName(), file.getPath()));
 			} else {
 				// This is default key for all other .data files
-				addEJSONFile(file, new byte[]{0x69, 0x61, 0x6d, 0x62, 0x6f, 0x0, 0x0, 0x0});
+				addEJSONFile(file, KeyProvider.getDefaultKey());
 			}
 		}
 	}

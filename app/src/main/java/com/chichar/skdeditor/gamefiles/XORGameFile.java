@@ -2,23 +2,7 @@ package com.chichar.skdeditor.gamefiles;
 
 public class XORGameFile extends JSONGameFile {
 
-	private static final byte[] key = new byte[] {
-			115,
-			108,
-			99,
-			122,
-			125,
-			103,
-			117,
-			99,
-			127,
-			87,
-			109,
-			108,
-			107,
-			74,
-			95
-	};
+	private static final byte[] key = KeyProvider.getXorKey();
 
 	public XORGameFile(String name, String realName, String path) {
 		super(name, realName, path);
