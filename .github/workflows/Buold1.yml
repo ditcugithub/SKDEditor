@@ -33,10 +33,15 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build APK
-      run: ./gradlew assembleRelease  # Use assembleDebug for debug builds
+      run: ./gradlew assembleRelease --stacktrace --info
 
-    - name: Upload APK
+    - name: Find APKs
+      run: |
+        mkdir -p apk_output
+        find app/build/outputs/apk/ -name "*.apk" -exec cp {} apk_output/ \;
+
+    - name: Upload APKs
       uses: actions/upload-artifact@v3
       with:
-        name: app-release.apk
-        path: app/build/outputs/apk/release/app-release.apk
+        name: apks
+        path: apk_output/
